@@ -15,30 +15,31 @@ public class Day01_OrnekAmazon {
     //4.Urun sayfasina gittikten sonra, urunun toplam fiyatini alacagiz
     //5.Urunun ortalama puanini (5 uzerinden) alacagiz.
 
-
-@Test
+    WebDriver driver;
+    @Test
     public void test1(){
-    WebDriverManager.chromedriver().setup();
-    WebDriver driver = new ChromeDriver();
-    driver.manage().window().maximize();
-    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-    driver.get("http://amazon.com");
 
 
-    WebElement aramaKutusu = driver.findElement(By.id("twotabsearchtextbox"));
-    aramaKutusu.sendKeys("baby stroller"+ Keys.ENTER);
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
 
+     driver.manage().window().maximize();
+     driver.manage().timeouts().implicitlyWait(10 , TimeUnit.SECONDS);
+     driver.get("http://amazon.com");
 
+     WebElement aramaKutusu = driver.findElement(By.id("twotabsearchtextbox"));
+     aramaKutusu.sendKeys("baby stroller" + Keys.ENTER);
 
-    WebElement ikinciSiradakiUrun = driver.findElement(By.xpath("//a[@class='a-link-normal a-text-normal'] )[2]"));
-    ikinciSiradakiUrun.click();
+        WebElement ikinciSiradaUrun = driver.findElement(By.xpath("( //a[@class='a-link-normal a-text-normal'] )[2]"));
+        ikinciSiradaUrun.click();
 
-}
-
-
-
-
+        WebElement urunFiyati = driver.findElement(By.id("priceblock_ourprice_row"));
+        System.out.println(urunFiyati.getText());
 
 
 
+
+
+
+    }
 }
